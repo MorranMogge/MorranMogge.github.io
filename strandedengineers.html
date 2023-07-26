@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Portfolio - Stranded Engineers</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script>
+			function functionStartUpButtonFixNew()
+		   {
+			   for (let i = 1; i < 8; i++) {
+				   var myVar = "myDIV" + i.toString();
+				   var x = document.getElementById(myVar);
+				   x.style.display="none";
+			   }
+		   }
+		</script>
+	</head>
+	<body onload="functionStartUpButtonFixNew()"></body>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Morgan Westerberg</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Stranded Engineers</h1>
+
+							<style>
+								.center{
+									margin: 0 auto;
+									width: 1080px;
+									height: 720;
+									display: block;
+								}
+							</style>
+								
+								<p style="text-align:left;">
+									<b>Role: </b> Programmer
+									<span style="float:right;">
+										<b>Engine:</b> Own Engine using C++, DirectX 11
+									</span>
+								</p>	
+							
+								<p style="text-align:left;">
+									<b>Time:</b> Late 2022 - Early 2023
+									<span style="float:right;">
+										<b>Group:</b> 7 members
+									</span>
+								</p>
+
+								<iframe class="center"src="https://youtube.com/embed/gpUj7KH1aRo" height="680"></iframe>
+
+								This game was developed as an assignment for the course Large game development project with agile methods at 
+								Blekinge Institute of Technology. This course took place over a period of 4 months, where 7 people got together
+								in order to create a game. This group consisted of 5 programmers and 2 technical artists. We used the agile method
+								scrum, and split the game features into multiple tasks. Every 2 weeks teachers checked up on us to see if things
+								had gone according to plan.
+
+								<br />
+								<br />
+								
+								<h2>MY CONTRIBUTIONS<br /></h2>
+								<i>Click on the boxes to get more info</i>
+								
+								
+								<p style="text-align:center"><button onclick="myFunction(1)">Wrapper of Physics library</button></p>
+								<div id="myDIV1">
+									<h3>Wrapper of Physics library<br /></h3>
+									The first large task I took upon myself was to implement a wrapper in order to simply the creation and use of physics hitboxes.
+									Since the physics was really important to us, we decided to use an already existing library in order to have more time for other
+									features. But to use the library for our game, a wrapper had to be created. We chose to use the React Physics 3D library.<br /><br />
+
+									In order to tackle this problem I first had to understand the libray. Luckily, they had documentation which was informative and gave
+									enough information. My vision was to have our game objects inside the game have a physcis component, which handled all the physics.
+									The group also agreed with this idea, since this would mean that all that was needed was for the user to specify the size and shape
+									of the hitbox and then everything was handled automatically. 
+									<a class="image fit"><img src="gifs/HitBoxes.gif" alt="" /></a>
+									<i>Physics applied to item</i><br />
+								</div>
+								
+								<p style="text-align:center"><button onclick="myFunction(2)">Debugging Tools</button></p>
+								<div id="myDIV2">
+									<h3>Debugging Tools<br /></h3>
+									In combination with the physics wrapper, I wanted a way to visualise these hitboxes to more easily debug and decide on appropiate sizes.
+									This was a daunting task, since I did not know where to begin. After looking through the documentation of React Physics 3D, I found that
+									they had a debugger. I could not get this debugger to render hitboxes, and therefore decided to create my own. This debugger used information
+									given by react's debugger, which was information about all the triangles in the scene. To render the triangles, I created a pipeline and a way
+									to store the information about the triangles that worked for our pipeline. Every frame, the information regarding the triangles had to be updated. 
+									This was to ensure the positions were correct every frame. When another collision box was added to the game, the debugger also had to update the 
+									recreate the vertex buffer to fit the new triangles. After hours of debbuging I managed to get it to work, and it helped tromendously finding 
+									correct sizes of hitboxes for the items.
+									<a class="image fit"><img src="gifs/DebugHitBoxes.gif" alt="" /></a>
+									<i>Rendering of hitboxes using the debugging tool</i><br /><br />
+									
+									Another debugging tool I created was one able to render vectors. This was done mainly since the player had some issues regarding movement. Since
+									the movement used vectors, and since vectors are quite hard to understand when looking at the data, I made a debugger to visualse it instead. This
+									debugger simply draws a line between to points in space, where the pipeline also takes in colour values in the place that normals usually occupy, 
+									allowing the coder so choose a different colour for every line.
+									<a href="#" class="image fit"><img src="images/VectorsAndBoxes.png" alt="" /></a>
+									<i>Rendering of debug hitboxes using the debugging tool</i><br /><br />
+								</div>
+								
+
+								<h2>Game Concept Challenge 2023<br /></h2>
+								<a class="image fit" width=650><img src="images/GCCWinner.jpg" alt="" /></a>
+								During the development of the game, we were pushed by the teachers to enter a competition known as Game Concept Challenge, hosted
+								by Creative Coast Festival and Gameport. After discussions within the group, we decided to join the competition since we thought that we had an interesting
+								idea, and that we would want to continue developing the game. In the game concept challenge, games or game ideas are submitted, and 
+								ones that stand out are elected as winners. Our game was one of the winners and won a price of ca $2500 towards the buissness.
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Morgan Westerberg 2023 </li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/hideelement.js"></script>
+
+
+	</body>
+</html>

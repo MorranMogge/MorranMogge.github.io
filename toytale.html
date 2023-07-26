@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Portfolio - Toy Tale</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script>
+			function functionStartUpButtonFixNew()
+		   {
+			   for (let i = 1; i < 8; i++) {
+				   var myVar = "myDIV" + i.toString();
+				   var x = document.getElementById(myVar);
+				   x.style.display="none";
+			   }
+		   }
+		   </script>
+	</head>
+	<body onload="functionStartUpButtonFixNew()"></body>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Morgan Westerberg</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<style>
+					.center{
+						margin: 0 auto;
+						width: 1080px;
+						display: block;
+					}
+				</style>
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Toy Tale</h1>
+
+							<p style="text-align:left;">
+								<b>Role: </b> Programmer
+								<span style="float:right;">
+									<b>Engine:</b> Own Engine using C++, DirectX 11
+								</span>
+							</p>	
+						
+							<p style="text-align:left;">
+								<b>Time:</b> April 2022 - May 2022	
+								<span style="float:right;">
+									<b>Group:</b> 6 members
+								</span>
+							</p>
+
+							<iframe class="center"src="https://youtube.com/embed/eFUI-Y6tlOg" height="680"></iframe><br />
+
+							<p style="text-align:center"><a href="https://bluetornado.itch.io/toy-tale" class="large button">Available on Itch.io</a></p><br />
+							This game was done as a project for school as second years at Blekinge Institute of Technology. We had to create a game
+							in our own engine using DirectX 11. This was done in order to teach us to build a game from the ground up. This was also
+							the first time that we were required to be at school 4 hours per day, since this course was 50% pace. For this project we used
+							the agile method scrum, with 2 week sprints and weekly checkups. This were to give an impression on how it is to work at a game 
+							company. <br /><br />
+							The game is a survival FPS game, where the player has to survive waves of incoming enemies. These enemies will get stronger with each wave. To help the player you will
+							gain currency by defeating enemies and with this you can upgrade stats such as health and damage. The player has access to two different guns at their disposal and can
+							fire a fireball at enemies. 
+							<br />
+							<br />
+							<h2>MY CONTRIBUTIONS<br /></h2>
+							<i>Click on the boxes to get more info</i>
+							<p style="text-align:center"><button onclick="myFunction(1)">Bullet/Weapon system</button></p>
+							<div id="myDIV1">
+								<h3>Bullet/Weapon system<br /></h3>
+								For this game, our vision was to have a system to have two different guns that would fire differently. We also wanted the Bullets to good to fire and we wanted the 
+								system to be well optimsed. For the bullet system to be more optimsed, bullets were never created during run-time. Constantly creating new objects when firing a gun 
+								can be quite the heavy task for the computer, however if they are already created and stored contigiously in memory, they can be accessed very fast. This is what our
+								bullet system does. Since the computers we programmed the game on were very computationally weak, every optimisation helped. In the end, no features were needed to be
+								cut or changed to fit the frames per second goal, since we often programmed with performance in mind.
+								<br /><br />
+								The weapon system is partly based on a weapon system I created for an older project. In the old project the user was able to design new weapons by changing stats of the weapon
+								such as fire rate, damage, bullet speed and so on, making it possible to create snipers and machine gun by specifying different stats. This project on the other hand, shared
+								many similarities. There was however another feature added, which was the ability to decide how many bullets that were shot every time, or multishot as we called it. This
+								was done by taking the forward vector of the player, and with the help of the right vector, space the creation of bullets out in a sonar triangle shape. In the end, 
+								we only created two weapons that did not feel too diferent, which in hindsight was poor choice since the system allowed for more diverse and interesting weapons.
+							<br /><br />
+							</div>
+
+							<p style="text-align:center"><button onclick="myFunction(2)">Stats system</button></p>
+							<div id="myDIV2">
+								<h3>Stats system<br /></h3>
+								Since we wanted the game to be replayable and rewarding, we felt that adding a stats system and currency from defeating enemies would be fitting. For the currency
+								we simply added it to your total amount at the end of each round. This data was stored in a text file, which means that the progress would not reset if the user
+								closed the game and restarted. When the currency had been implemented the stats were next. The stats affected attributes such as player health, mana, defense and
+								bullet damage. These stats would be saved in the same file as the currency, and could be upgraded in the stats menu. This menu increased the effect of a stat and 
+								decreased the currency amount, so that the user needs money to buy upgrades. The upgrades would then increase in price. The user could reset all stats if they
+								wanted to, including the curreny, and get a fresh restart of the game.
+								<img class="center" src="images/ToyTaleUpgradeScreen.png">⁪</img><br />
+								<p style="text-align: center;"><i>Upgrade screen in Toy Tale</i></p>
+
+							</div>
+
+							<p style="text-align:center"><button onclick="myFunction(3)">Game-State System</button></p>
+							<div id="myDIV3">
+								<h3>Game-State System<br /></h3>
+								In the beginning of the game we agreed upon having a game-state system, however that was not implemented early. All team members kept adding features to the main.cpp
+								file and no one wanted to make the game-state system since everone sat with their own tasks. After I finished the bullet and stats system, I decided to take on the job
+								and sat down to begin implementing the state system. This was not a fun process, since a lot of changes had to be made due to our classes' constructors. A lot of issues
+								regarding memory leaks also appeared. However, after hours of debugging and several crash fixes the system was finally implemented, making the code cleaner and making 
+								switching between menu and game a lot simpler. I learned that it was important to decide on a struture early on and sit down to implement it before all the features
+								start to being implemented. This lead to me instantly creating a game state system when our large game project "Stranded Enigneers" began.
+							</div>
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Morgan Westerberg 2023 </li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/hideelement.js"></script>
+
+	</body>
+</html>

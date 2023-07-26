@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Portfolio - DirectX 11 Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script>
+			function functionStartUpButtonFixNew()
+		   {
+			   for (let i = 1; i < 8; i++) {
+				   var myVar = "myDIV" + i.toString();
+				   var x = document.getElementById(myVar);
+				   x.style.display="none";
+			   }
+		   }
+		</script>
+	</head>
+	<body onload="functionStartUpButtonFixNew()"></body>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Morgan Westerberg</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<style>
+
+					.center{
+						margin: 0 auto;
+						width: 880px;
+						display: block;
+					}
+				</style>
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">DirectX 11 Project</h1>
+							
+							<p style="text-align:left;">
+								<b>Role: </b> Programmer, Level designer
+								<span style="float:right;">
+									<b>Engine:</b> Own Engine using C++, DirectX 11
+								</span>
+							</p>
+							
+							
+							<p style="text-align:left;">
+								<b>Time:</b> May 2022 -	August 2022
+								<span style="float:right;">
+									<b>Group:</b> 1 member
+								</span>
+							</p>
+
+							<img class="center" src="images/DX11Proj.png">⁪</img><br />
+							
+							<p style="text-align:center"><a href="https://github.com/MorranMogge/3D_project" class="large button">Available on GitHub</a></p><br /><br />
+							
+							<h2>Techniques</h2><br />
+							<i>Click on the boxes to get more info</i>
+
+							<p style="text-align:center"><button onclick="myFunction(1)">Deferred Rendering</button></p>
+							<div id="myDIV1">
+								<h3 style="text-align: center;">Deferred rendering<br /></h3>
+								<img class="center" src="images/deferred.png">⁪</img><br />
+								For this implementation, 5 Render Targets and 1 Unorderd Access View was used. In the render targets 5 position, normals, ambient, diffuse and specular
+								were stored. Since we are writing float4 to the render targets and it only needs 3 for the values, extra information could be stored in them. In this
+								implementation the shinyness was stored in the specular render target to give an example on how it could be used. The next step is to do the light
+								calculation on the compute shader. To do this, we send the render targets up to the compute shaders as Texture2D<float4> arrays. After the calculations
+								are done we write to the unorderd access view, which is bound to our back buffer.<br /><br />
+							</div>
+
+							<p style="text-align:center"><button onclick="myFunction(2)">Cube mapping</button></p>
+							<div id="myDIV2">
+								<h3 style="text-align: center;">Cube mapping<br /></h3>
+								<img class="center" src="images/cubemapping.png">⁪</img><br />
+								In order to implement cube mapping, a class containing 6 Render Target Views was added. These would then be rendered to. When everything was
+								set up we draw to every render target from different perspective.<br />
+								<img class="center" src="images/CubemapDrawObject.png">⁪</img><br />
+								<img class="center" src="images/CubemapSetRot.png">⁪</img><br />
+								After the render targets had been filled, they are sent up to a pixel shader as a texture cube. With the help of our cameras position and the normal
+								of the cube map object we can get the reflection. 
+							</div>
+
+							
+							<p style="text-align:center"><button onclick="myFunction(3)">Shadow mapping and Lights</button></p>
+							<div id="myDIV3">
+								<h3 style="text-align: center;">Shadow mapping<br /></h3>
+								<img class="center" src="images/shadowmapping.png">⁪</img><br />
+								In order to add shadows into the project, additional cameras were layed out on the same positions as the lights were located at. These camera's 
+								positions and directions would then be sent to a vertex shader were the depth was written to a depth texture. The picture below shows an example 
+								of the generated depth texture.
+								<img class="center" src="images/Depthbuffer.png">⁪</img><br />
+								These textures were then sent to the pixel shader, where the distance to each fragment would be compared to the depth in the depth textues. If the 
+								distance to the vertice is larger than the one from the texture, we know that it should should be shadowed.
+								<h3 style="text-align: center;">Lights (Directional light and spot light)<br /></h3>
+								<div class="box alt">
+									<div class="row gtr-uniform">
+										<div class="col-6"><span class="image fit"><img src="gifs/spotLight.gif" alt="" /></span></div>
+										<div class="col-6"><span class="image fit"><img src="gifs/directionalLight.gif" alt="" /></span></div>
+									</div>
+								</div>
+								In this project, both directional lights and spotlights were explored. These light's data were stored in separate structs
+								which contained all the necessary data for light calculations. Since we use deferred rendering, only fragments that were visable 
+								on the screen would be calculated. 
+							</div>
+							
+							<p style="text-align:center"><button onclick="myFunction(4)">Particles</button></p>
+							<div id="myDIV4">
+								<h3 style="text-align: center;">Particles<br /></h3>
+								<img class="center" src="gifs/particles.gif">⁪</img><br />
+								In this implementation, particles are draw using a geometry shader and are updated using a compute shader. First we need to create the particles, which
+								is done on the CPU and then we bind these particles to a Unordered Access View. Now that we have the particles set up we can now start drawing and updating
+								them. To draw them, we make use of a geometry shader. This geometry shader needs the camera's right and up vector. This is since we want to create billboarded
+								quads out of the particles. If we do not create quad or change the particles, they will appear as 1px in size, which is very hard to see.
+								<img class="center" src="images/ParticleGeoShader.png">⁪</img><br />
+								To update the particles, we make use of a compute shader, as mentioned earlier. The positions for the particles are stored in the unorderd access view, and 
+								to update them we need to find the right particles and then update that float3. To animate them dependant on time, we send in the time as a constant buffer.
+								<img class="center" src="images/ParticleComputeShader.png">⁪</img><br />
+
+
+							</div>
+
+							<p style="text-align:center"><button onclick="myFunction(5)">Obj-parser + Submesh support</button></p>
+							<div id="myDIV5">	
+								<h3 style="text-align: center;">Obj-parser + Submesh support<br /></h3>
+								<img class="center" src="gifs/subMeshes.gif">⁪</img><br />
+								This was the first technique that was implemented for this project. The reason to why it was implemented first, was to load in more complex .obj
+								models used for testing other techniques. The obj-parser functions by saving all the read vertice data in different vectors, where all the collected
+								data is stored in a struct. This data can then be utulised by the scene objects, creating the models and objects seen in the project. While the
+								obj-parser reads through the file, it saves the vertice data in a format which is then used to create index buffers, reducing the amount of memory consumed. 
+							</div>
+							
+							<p style="text-align:center"><button onclick="myFunction(6)">Frustum Culling</button></p>
+							<div id="myDIV6">
+								<h3 style="text-align: center;">Frustum Culling<br /></h3>
+								<img class="center" src="gifs/frustumCulling.gif">⁪</img><br />
+								To implement this, I used the DirectXCollision library. With this library I got access to the BoundingBox struct, which greatly aided in the
+								simplicity of the implementation. To create the bounding box, the obj-parser had to be modified to save the bottom left and top right positions.
+								With these, bounding boxes were created. Next was to create the quad tree, which was done by recursivley creating children and giving them 1/4 size
+								of the parents bounding box. When both the tree and the objects bounding boxes had been created, we let the objects "fall" into the tree in order
+								to see which node they end up in. In this implementation, two different nodes can point to the same object, but this is not a problem since it is 
+								handled later on. Lastly, the camera needs a box in which to intersect the tree with. Luckily, the DirectXCollision library provides us with a so
+								called BoundingFrustum, which we use. <br /><br />
+								Now everything is set up and the culling can begin. To cull unseen objects we send in our BoundingFrustum and 
+								compare it to the trees bounding boxes. For the boxes which are hit, we navigate down the tree and check their children, this is done recursivley until 
+								the leaf node is reached. We then add all the objects which it contains, and here we make sure we do add an object twice. When all is done we cull objects
+								that are definetely not seen by the camera. 
+								<img class="center" src="images/FrustumCullingCode.png">⁪</img><br />
+
+							</div>
+
+							<p style="text-align:center"><button onclick="myFunction(7)">Tesselation</button></p>
+							<div id="myDIV7">
+								<h3 style="text-align: center;">Tesselation<br /></h3>
+								<img class="center" src="gifs/tesselation.gif">⁪</img><br />
+								For this technique, the pipeline was altered to include the tesselation stage. By adding both a domain and hull shader, we could tesselate 
+								and increase the complexity of the models. In order to control the amount of tesselation, the position of the camera was sent to the hull shader,
+								where the distance to each vertice determined if it should be tesselated. For this implementation, we did not make use of displacement textures, however
+								this is something I explored in other projects.
+								<img class="center" src="images/Hullshader.png">⁪</img><br />
+							</div>
+							
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Morgan Westerberg 2023 </li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/hideelement.js"></script>
+
+
+	</body>
+</html>
